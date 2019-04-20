@@ -1,0 +1,32 @@
+{
+  "name": "gen341-final-project",
+  "version": "1.0.0",
+  "description": "GEN341 Final Project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntchjb/gen341-final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntchjb/gen341-final-project/issues"
+  },
+  "homepage": "https://github.com/ntchjb/gen341-final-project#readme",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-markdown": "^4.0.8"
+  },
+  "devDependencies": {}
+}
