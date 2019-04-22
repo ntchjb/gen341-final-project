@@ -14,15 +14,15 @@ const array2str = (arr) => {
 const toggleMenu = () => {
   const burger = document.getElementById('burger-menu')
   const navMenu = document.getElementById('nav-menu')
-  if (burger.classList.contains('is-active')) {
-    burger.classList.remove('is-active')
+  if (burger.classNameList.contains('is-active')) {
+    burger.classNameList.remove('is-active')
   } else {
-    burger.classList.add('is-active')
+    burger.classNameList.add('is-active')
   }
-  if (navMenu.classList.contains('is-active')) {
-    navMenu.classList.remove('is-active')
+  if (navMenu.classNameList.contains('is-active')) {
+    navMenu.classNameList.remove('is-active')
   } else {
-    navMenu.classList.add('is-active')
+    navMenu.classNameList.add('is-active')
   }
 }
 
@@ -44,27 +44,27 @@ const Header = ({ title, subtitle, meta }) => (
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
       <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </Head>
-    <header class="container">
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
+    <header className="container">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
           <Link href="/">
-            <a class="navbar-item">
+            <a className="navbar-item">
               <img src="/static/logo.png" />
             </a>
           </Link>
-          <a role="button" onClick={toggleMenu} class="navbar-burger burger" id="burger-menu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" onClick={toggleMenu} className="navbar-burger burger" id="burger-menu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-        <div class="navbar-menu" id="nav-menu">
-          <div class="navbar-start">
+        <div className="navbar-menu" id="nav-menu">
+          <div className="navbar-start">
             <Link href="/">
-              <a class="navbar-item">Home</a>
+              <a className="navbar-item">Home</a>
             </Link>
             <Link href="/about">
-              <a class="navbar-item">About</a>
+              <a className="navbar-item">About</a>
             </Link>
           </div>
         </div>
