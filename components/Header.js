@@ -48,10 +48,15 @@ const Header = ({ title, subtitle, meta }) => (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link href="/">
-            <a className="navbar-item">
+            <a className="navbar-item superbrand">
               <img src="/static/logo.png" />
             </a>
           </Link>
+          <style jsx>{`
+            .superbrand {
+              margin-top: -15px;
+            }
+          `}</style>
           <a role="button" onClick={toggleMenu} className="navbar-burger burger" id="burger-menu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>

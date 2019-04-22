@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import FoodCard from '../components/FoodCard';
 
 const title = "Ban Kanan";
+const subtitle = "Home";
 const meta = {
   description: "The Phuket local food receipes from Ban Kanan",
   tags: [
@@ -25,7 +26,7 @@ const exampleFood = {
 
 const Index = () => (
   <div>
-    <Header title={title} subtitle="Home" meta={meta} />
+    <Header title={title} subtitle={subtitle} meta={meta} />
     <section className="section">
       <div className="container">
         <div className="tile is-ancestor">
