@@ -3,7 +3,7 @@ import HeaderLayout from '../components/HeaderLayout';
 
 const header = {
   title: "Ban Kanan",
-  subtitle: "About",
+  subtitle: "About & Contact",
   meta: {
     description: "The history of Ban Kanan, local wisdom, and Phuket local food",
     tags: [

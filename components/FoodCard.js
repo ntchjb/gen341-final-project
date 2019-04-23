@@ -9,6 +9,7 @@ import Link from 'next/link';
     publishedDate: Date,
     modifiedDate: Date,
     author: string,
+    path: string
   },
 
 */
@@ -43,7 +44,7 @@ const FoodCard = ({ food, size }) => (
           position:absolute;
           top:0;right:0;bottom:0;left:0;
           z-index: -1;
-          background-image: url(${food.thumbnailUrl});
+          background-image: url(${food.path + "/" + food.thumbnailUrl});
           background-size: cover;
           background-position: center center;
           transition: all 0.3s ease;

@@ -1,5 +1,6 @@
 import HeaderLayout from '../components/HeaderLayout'
-import FoodCard from '../components/FoodCard';
+import FoodCard from '../components/FoodCard'
+import fileMapping from '../posts/map.json'
 
 
 const header = {
@@ -16,30 +17,113 @@ const header = {
   }
 };
 
-const exampleFood = {
-  id: 1,
-  thumbnailUrl: "https://i.ytimg.com/vi/apGUaKyC42E/maxresdefault.jpg",
-  title: "Moo Hong: Phuket Pork belly Stew",
-  description: "It’s a Southern Thai pork stew with Chinese roots that’s quite similar to moo palo, but with fewer ingredients.",
-  publishedDate: new Date(2019, 3, 22, 18, 3, 30),
-  modifiedDate: new Date(2019, 3, 22, 19, 20, 17),
-  author: "Somkid Thongdee",
+class Index extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: Object.keys(fileMapping).length,
+      visible: 5,
+      error: false,
+      foodMeta: []
+    };
+
+    this.loadMore = this.loadMore.bind(this);
+    this.renderLoadMoreButton = this.renderLoadMoreButton.bind(this);
+    this.renderFoodCards = this.renderFoodCards.bind(this);
+  }
+
+  componentDidMount() {
+    const foodMeta = [];
+    const mapping = fileMapping;
+    Object.keys(fileMapping).forEach((id) => {
+      const meta = require(`../posts/${mapping[id]}/meta.json`)
+      meta.frontMatter.path = `/static/posts/${mapping[id]}`
+      meta.frontMatter.id = id
+      foodMeta.push(meta)
+    })
+    this.setState({
+      foodMeta
+    });
+    // console.log(`State FoodMeta: ${this.state.foodMeta}`)
+  }
+
+  loadMore() {
+    this.setState((prev) => {
+      return { visible: prev.visible + 5 };
+    });
+  }
+
+  renderLoadMoreButton() {
+    if (this.state.visible < this.state.count) {
+      return (
+        <button className="button is-black is-medium" onClick={this.loadMore}>More...</button>
+      )
+    }
+  }
+
+  renderFoodCards() {
+    let countCardPerTile = 0;
+    let numCardPerTile = 2;
+    // console.log(`thestate: ${JSON.stringify(this.state)}`)
+    const foodCardList = this.state.foodMeta.slice(0, this.state.visible).map((item, index) => {
+      return (<FoodCard food={item.frontMatter} key={index} />);
+    })
+    const tileList = [];
+    let tempList = [];
+    for (let i = 0; i < foodCardList.length; i++) {
+      countCardPerTile++;
+      if (countCardPerTile > numCardPerTile) {
+        countCardPerTile = 0;
+        if (numCardPerTile === 2) {
+          numCardPerTile = 3;
+        } else {
+          numCardPerTile = 2;
+        }
+        const j = tileList.length;
+        tileList.push((
+          <div className="tile" key={j}>
+            {tempList}
+          </div>
+        ));
+        tempList = [];
+      }
+      tempList.push(foodCardList[i]);
+    }
+
+    if (tempList.length > 0) {
+      const j = tileList.length;
+      tileList.push((
+        <div className="tile" key={j}>
+          {tempList}
+        </div>
+      ));
+      tempList = [];
+    }
+    return tileList;
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <div className="tile is-ancestor">
+            <div className="tile is-vertical">
+              {this.renderFoodCards()}
+            </div>
+          </div>
+        </div>
+        <div className="columns is-centered">
+          <div className="column has-text-centered">
+            {
+              this.renderLoadMoreButton()
+            }
+          </div>
+        </div>
+      </div >
+    )
+  }
 }
 
-const Index = () => (
-  <div className="tile is-ancestor">
-    <div className="tile is-vertical">
-      <div className="tile">
-        <FoodCard food={exampleFood} />
-        <FoodCard food={exampleFood} />
-      </div>
-      <div className="tile">
-        <FoodCard food={exampleFood} />
-        <FoodCard food={exampleFood} />
-        <FoodCard food={exampleFood} />
-      </div>
-    </div>
-  </div>
-)
+const IndexPage = HeaderLayout(Index, header);
 
-export default HeaderLayout(Index, header);
+export default IndexPage;

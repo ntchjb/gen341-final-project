@@ -1,9 +1,13 @@
 import { withRouter } from 'next/router'
 import HeaderLayout from '../components/HeaderLayout'
+import Markdown from 'react-markdown'
+import fileMapping from '../posts/map.json'
 
-const FoodContent = (id) => {
+const FoodContent = (md) => {
   return () => (
-    <p>This is food with id: {id}</p>
+    <div>
+      <Markdown className="content is-medium" escapeHtml={false} source={md} />
+    </div>
   )
 };
 
@@ -23,22 +27,26 @@ const Food = (props) => {
     return HeaderLayout(errorMsg, header)();
   }
   else {
-    const header = {
-      title: "Moo Hong",
-      subtitle: "Phuket Food Recipes",
-      meta: {
-        description: "The Phuket local food receipes from Ban Kanan",
-        tags: [
-          "food",
-          "Ban Kanan",
-          "recipes",
-          "Phuket",
-          "Moo Hong"
-        ]
-      }
-    };
-    return HeaderLayout(FoodContent(props.router.query.id), header)();
+    props.content.header.thumbnailUrl = props.content.header.path + "/" + props.content.frontMatter.thumbnailUrl;
+    return HeaderLayout(FoodContent(props.content.md), props.content.header)();
   }
 };
+
+const mapping = fileMapping;
+
+Food.getInitialProps = async function (context) {
+  const { id } = context.query
+
+  /* In markdown, image link should be /posts/moo-hong/thumbnail.jpg */
+  const meta = await require(`../posts/${mapping[id]}/meta.json`);
+  const markdown = await require(`../posts/${mapping[id]}/index.md`);
+
+  const content = meta;
+  content.header.path = `/static/posts/${mapping[id]}`
+  content['md'] = markdown.default;
+  // console.log(JSON.stringify(content['md']));
+
+  return { content }
+}
 
 export default withRouter(Food)
