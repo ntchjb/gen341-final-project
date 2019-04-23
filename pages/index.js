@@ -1,17 +1,19 @@
-
-import Header from '../components/Header';
+import HeaderLayout from '../components/HeaderLayout'
 import FoodCard from '../components/FoodCard';
 
-const title = "Ban Kanan";
-const subtitle = "Home";
-const meta = {
-  description: "The Phuket local food receipes from Ban Kanan",
-  tags: [
-    "food",
-    "Ban Kanan",
-    "recipes",
-    "Phuket"
-  ]
+
+const header = {
+  title: "Ban Kanan",
+  subtitle: "Home",
+  meta: {
+    description: "The Phuket local food receipes from Ban Kanan",
+    tags: [
+      "food",
+      "Ban Kanan",
+      "recipes",
+      "Phuket"
+    ]
+  }
 };
 
 const exampleFood = {
@@ -25,28 +27,21 @@ const exampleFood = {
 }
 
 const Index = () => (
-  <div>
-    <Header title={title} subtitle={subtitle} meta={meta} />
-    <section className="section">
-      <div className="container">
-        <div className="tile is-ancestor">
-          <div className="tile is-vertical">
-            <div className="tile">
-              <FoodCard food={exampleFood} />
-              <FoodCard food={exampleFood} />
-              <FoodCard food={exampleFood} />
-            </div>
-            <div className="tile">
-              <FoodCard food={exampleFood} />
-              <FoodCard food={exampleFood} />
-              <FoodCard food={exampleFood} />
-              <FoodCard food={exampleFood} />
-            </div>
-          </div>
-        </div>
+  <div className="tile is-ancestor">
+    <div className="tile is-vertical">
+      <div className="tile">
+        <FoodCard food={exampleFood} />
+        <FoodCard food={exampleFood} />
+        <FoodCard food={exampleFood} />
       </div>
-    </section>
+      <div className="tile">
+        <FoodCard food={exampleFood} />
+        <FoodCard food={exampleFood} />
+        <FoodCard food={exampleFood} />
+        <FoodCard food={exampleFood} />
+      </div>
+    </div>
   </div>
 )
 
-export default Index
+export default HeaderLayout(Index, header);
