@@ -4,7 +4,7 @@ import FoodCard from '../components/FoodCard';
 
 const header = {
   title: "Ban Kanan",
-  subtitle: "Home",
+  subtitle: "The List",
   meta: {
     description: "The Phuket local food receipes from Ban Kanan",
     tags: [
@@ -32,10 +32,8 @@ const Index = () => (
       <div className="tile">
         <FoodCard food={exampleFood} />
         <FoodCard food={exampleFood} />
-        <FoodCard food={exampleFood} />
       </div>
       <div className="tile">
-        <FoodCard food={exampleFood} />
         <FoodCard food={exampleFood} />
         <FoodCard food={exampleFood} />
         <FoodCard food={exampleFood} />

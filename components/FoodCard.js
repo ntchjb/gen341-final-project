@@ -31,11 +31,9 @@ const FoodCard = ({ food, size }) => (
       <Link href={`/food?id=${food.id}`}>
         <a className="ct columns is-vcentered">
           <div className="column">
-            <p className="title is-4 has-text-centered">{food.title}</p>
-            <p className="subtitle is-6 has-text-centered">{"by " + food.author + " | " + moment(food.publishedDate).fromNow()}</p>
-            <div className="content has-text-centered">
-              {truncateStr(food.description, maxNumChars)}
-            </div>
+            <p className="title is-3 has-text-centered">{food.title}</p>
+            <hr/>
+            <p className="subtitle is-5 has-text-centered">{"by " + food.author + " | " + moment(food.publishedDate).fromNow()}</p>
           </div>
         </a>
       </Link>
@@ -89,6 +87,10 @@ const FoodCard = ({ food, size }) => (
           overflow: hidden;
           position: relative;
           min-height: 350px;
+        }
+
+        .tile.is-parent {
+          display: flex;
         }
       `}</style>
   </div>

@@ -7,22 +7,21 @@ const array2str = (arr) => {
   arr.forEach(el => {
     str += el.toString() + ", "
   })
-  str.replace(/,\s*$/, "");
-  return str
+  return str.replace(/,\s*$/, "");
 }
 
 const toggleMenu = () => {
   const burger = document.getElementById('burger-menu')
   const navMenu = document.getElementById('nav-menu')
-  if (burger.classNameList.contains('is-active')) {
-    burger.classNameList.remove('is-active')
+  if (burger.classList.contains('is-active')) {
+    burger.classList.remove('is-active')
   } else {
-    burger.classNameList.add('is-active')
+    burger.classList.add('is-active')
   }
-  if (navMenu.classNameList.contains('is-active')) {
-    navMenu.classNameList.remove('is-active')
+  if (navMenu.classList.contains('is-active')) {
+    navMenu.classList.remove('is-active')
   } else {
-    navMenu.classNameList.add('is-active')
+    navMenu.classList.add('is-active')
   }
 }
 
