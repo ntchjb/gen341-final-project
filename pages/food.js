@@ -40,11 +40,11 @@ Food.getInitialProps = async function (context) {
   const markdown = await require(`../posts/${mapping[id]}/index.md`);
 
   const content = meta;
+  content['md'] = markdown.default;
+  content.header.path = `/static/posts/${mapping[id]}`
   /* Use as running once */
   if (content[0] === undefined) {
-    content.header.path = `/static/posts/${mapping[id]}`
     content.header.thumbnailUrl = content.header.path + "/" + content.header.thumbnailUrl
-    content['md'] = markdown.default;
     content[0] = true;
   }
   // console.log(JSON.stringify(meta['md']));

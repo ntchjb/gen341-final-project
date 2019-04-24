@@ -1,22 +1,7 @@
 import HeaderLayout from '../components/HeaderLayout'
 import FoodCard from '../components/FoodCard'
 import fileMapping from '../posts/map.json'
-
-
-const header = {
-  title: "Ban Kanan",
-  subtitle: "The List",
-  meta: {
-    description: "The Phuket local food receipes from Ban Kanan",
-    tags: [
-      "food",
-      "Ban Kanan",
-      "recipes",
-      "Phuket"
-    ]
-  },
-  thumbnailUrl: "/static/indexThumbnail.jpg"
-};
+import header from '../posts/index/meta.json';
 
 class Index extends React.Component {
   constructor(props) {
