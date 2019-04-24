@@ -2,5 +2,7 @@ node_modules
 .next
 .env
 posts/*
+!posts/index
+!posts/about
 /static/posts/*
 /out

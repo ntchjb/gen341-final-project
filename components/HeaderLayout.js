@@ -8,14 +8,14 @@ const HeaderLayout = (Page, header) => {
   return () => (
     <div>
       <div className="container">
-        <Header title={header.title} subtitle={header.subtitle} meta={header.meta}/>
+        <Header title={header.title} subtitle={header.subtitle} meta={header.meta} />
       </div>
       <Title {...header} />
+      <div className="container">
         <section className="section">
-          <div className="container">
-            <Page/>
-          </div>
-        </section>
+          <Page />
+          </section>
+        </div>
       <Footer />
     </div>
   )
