@@ -1,23 +1,14 @@
-import Header from '../components/Header'
+import Markdown from 'react-markdown';
 import HeaderLayout from '../components/HeaderLayout';
+import md from '../posts/about/index.md';
+import meta from '../posts/about/meta.json';
 
-const header = {
-  title: "Ban Kanan",
-  subtitle: "About & Contact",
-  meta: {
-    description: "The history of Ban Kanan, local wisdom, and Phuket local food",
-    tags: [
-      "food",
-      "Ban Kanan",
-      "recipes",
-      "Phuket",
-      "History"
-    ]
-  }
+const About = () => {
+  return (
+    <Markdown className="content is-medium" escapeHtml={false} source={md} />
+  )
 };
 
-const About = () => (
-  <p>This is about page</p>
-);
+meta.header.thumbnailUrl = '/static/aboutThumbnail.jpg';
 
-export default HeaderLayout(About, header);
+export default HeaderLayout(About, meta.header);

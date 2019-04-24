@@ -32,7 +32,7 @@ const FoodCard = ({ food, size }) => (
       <Link href={`/food?id=${food.id}`}>
         <a className="ct columns is-vcentered">
           <div className="column">
-            <p className="title is-3 has-text-centered">{food.title}</p>
+            <p className="title is-3 has-text-centered">{food.title +" | " + food.subtitle}</p>
             <hr/>
             <p className="subtitle is-5 has-text-centered">{"by " + food.author + " | " + moment(food.publishedDate).fromNow()}</p>
           </div>
@@ -44,7 +44,7 @@ const FoodCard = ({ food, size }) => (
           position:absolute;
           top:0;right:0;bottom:0;left:0;
           z-index: -1;
-          background-image: url(${food.path + "/" + food.thumbnailUrl});
+          background-image: url(${food.thumbnailUrl});
           background-size: cover;
           background-position: center center;
           transition: all 0.3s ease;

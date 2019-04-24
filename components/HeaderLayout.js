@@ -10,7 +10,7 @@ const HeaderLayout = (Page, header) => {
       <div className="container">
         <Header title={header.title} subtitle={header.subtitle} meta={header.meta}/>
       </div>
-      <Title title={header.title} subtitle={header.subtitle} thumbnailUrl={header.thumbnailUrl} />
+      <Title {...header} />
         <section className="section">
           <div className="container">
             <Page/>

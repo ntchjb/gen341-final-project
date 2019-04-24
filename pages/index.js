@@ -14,7 +14,8 @@ const header = {
       "recipes",
       "Phuket"
     ]
-  }
+  },
+  thumbnailUrl: "/static/indexThumbnail.jpg"
 };
 
 class Index extends React.Component {
@@ -37,8 +38,13 @@ class Index extends React.Component {
     const mapping = fileMapping;
     Object.keys(fileMapping).forEach((id) => {
       const meta = require(`../posts/${mapping[id]}/meta.json`)
-      meta.frontMatter.path = `/static/posts/${mapping[id]}`
-      meta.frontMatter.id = id
+      /* Used as running once */
+      if (meta[0] === undefined) {
+        meta.header.path = `/static/posts/${mapping[id]}`
+        meta.header.id = id
+        meta.header.thumbnailUrl = meta.header.path + "/" + meta.header.thumbnailUrl;
+        meta[0] = true; // Updated
+      }
       foodMeta.push(meta)
     })
     this.setState({
@@ -66,7 +72,7 @@ class Index extends React.Component {
     let numCardPerTile = 2;
     // console.log(`thestate: ${JSON.stringify(this.state)}`)
     const foodCardList = this.state.foodMeta.slice(0, this.state.visible).map((item, index) => {
-      return (<FoodCard food={item.frontMatter} key={index} />);
+      return (<FoodCard food={item.header} key={index} />);
     })
     const tileList = [];
     let tempList = [];
@@ -106,6 +112,12 @@ class Index extends React.Component {
     return (
       <div>
         <div>
+          <div className="hero">
+            <div className="hero-body">
+              <h1 className="title is-1 has-text-centered">Food Receipes</h1>
+            </div>
+          </div>
+          <hr />
           <div className="tile is-ancestor">
             <div className="tile is-vertical">
               {this.renderFoodCards()}
