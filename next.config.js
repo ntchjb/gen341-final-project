@@ -9,8 +9,8 @@ module.exports = {
 
     return config
   },
-  
-  exportPathMap: function() {
+
+  exportPathMap: function () {
     return {
       '/': { page: '/' }
     }
