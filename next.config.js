@@ -1,6 +1,24 @@
+const staticPages = ['index', 'about'];
+
+const { lstatSync, readdirSync } = require('fs')
+const { join } = require('path')
+const isDirectory = source => lstatSync(source).isDirectory()
+const getDirectories = source => {
+  const directoryPaths = readdirSync(source).map(name => join(source, name)).filter(isDirectory);
+  const result = [];
+  directoryPaths.forEach((item) => {
+    result.push(item.split('/')[1]);
+  })
+  staticPages.forEach((item) => {
+    const index = result.indexOf(item);
+    result.splice(index, 1);
+  });
+  return result;
+}
+
 module.exports = {
-  webpack: (config) => {
-    // const { isServer } = option s;
+  webpack: (config, options) => {
+    const { isServer } = options;
     config.module.rules.push(
       {
         test: /\.md$/,
@@ -14,9 +32,9 @@ module.exports = {
             options: {
               name: '[name]-[hash].[ext]',
               publicPath: (url, resourcePath, context) => {
-                return `static/images/${url}`;
+                return `/_next/static/images/${url}`;
               },
-              outputPath: `../static/images/`,
+              outputPath: `${isServer ? "../" : ""}static/images/`,
             },
           },
         ]
@@ -27,8 +45,18 @@ module.exports = {
   },
 
   exportPathMap: function () {
-    return {
-      '/': { page: '/' }
+    const dynamicPages = {};
+    const directoryList = getDirectories("./posts");
+    // console.log(directoryList)
+    directoryList.forEach((item) => {
+      dynamicPages[`/f/${item}`] = { page: '/food', query: { 'id': item } }
+    })
+    const fixedPages = {
+      '/': { page: '/' },
+      '/about': { page: '/about' },
     }
+    const cache = Object.assign({}, dynamicPages, fixedPages);
+    // console.log(cache)
+    return cache;
   }
 }

@@ -29,7 +29,7 @@ const FoodCard = ({ food, size }) => (
   <div className={size ? "tile is-parent " + size : "tile is-parent"}>
     <div className="tile is-child box">
       <div className="bg"><div className="overlay"></div></div>
-      <Link href={`/food?id=${food.id}`}>
+      <Link as={`/f/${food.id}`} href={`/food?id=${food.id}`}>
         <a className="ct columns is-vcentered">
           <div className="column">
             <p className="title is-3 has-text-centered">{food.title}</p>
