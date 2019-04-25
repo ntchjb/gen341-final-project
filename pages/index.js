@@ -1,13 +1,44 @@
 import HeaderLayout from '../components/HeaderLayout'
 import FoodCard from '../components/FoodCard'
-import fileMapping from '../posts/map.json'
-import header from '../posts/index/meta.json';
+import { header } from '../posts/index/meta.json';
+
+let postList = [];
+// Static page e.g. Home, About, etc.
+const staticPages = ['index', 'about'];
+
+
+function importAll(r) {
+  const cache = {};
+  r.keys().forEach(key => {
+    const directoryArr = key.split('/');
+    // Only get the first directory in the file path.
+    const directoryName = directoryArr[1];
+    const fileName = directoryArr[2];
+    if (!(directoryName in cache) && fileName === "meta.json" && directoryArr.length === 3) {
+      cache[directoryName] = r(key).header.modifiedDate;
+      // console.log(`directory: ${directoryName}, date: ${cache[directoryName]}`)
+    }
+  });
+  staticPages.forEach((value) => {
+    delete cache[value];
+  })
+  postList = Object.keys(cache).sort((a, b) => {
+    const dataA = new Date(cache[a]);
+    const dataB = new Date(cache[b]);
+    if (dataA < dataB)
+      return -1;
+    if (dataB > dataA)
+      return 1;
+    return 0;
+  }).reverse();
+}
+importAll(require.context('../posts/', true));
 
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: Object.keys(fileMapping).length,
+      count: postList.length,
       visible: 5,
       error: false,
       foodMeta: []
@@ -20,14 +51,12 @@ class Index extends React.Component {
 
   componentDidMount() {
     const foodMeta = [];
-    const mapping = fileMapping;
-    Object.keys(fileMapping).forEach((id) => {
-      const meta = require(`../posts/${mapping[id]}/meta.json`)
+    postList.forEach((id) => {
+      const meta = require(`../posts/${id}/meta.json`)
       /* Used as running once */
       if (meta[0] === undefined) {
-        meta.header.path = `/static/posts/${mapping[id]}`
         meta.header.id = id
-        meta.header.thumbnailUrl = meta.header.path + "/" + meta.header.thumbnailUrl;
+        meta.header.thumbnailUrl = require(`../posts/${id}/${meta.header.thumbnailUrl}`);
         meta[0] = true; // Updated
       }
       foodMeta.push(meta)

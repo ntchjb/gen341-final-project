@@ -53,7 +53,7 @@ const Header = ({ title, subtitle, meta }) => (
           </Link>
           <style jsx>{`
             .superbrand {
-              margin-top: -15px;
+              margin-top: -13px;
             }
           `}</style>
           <a role="button" onClick={toggleMenu} className="navbar-burger burger" id="burger-menu" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

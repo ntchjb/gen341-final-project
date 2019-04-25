@@ -1,14 +1,16 @@
 {
-  "title": "Phuket Cuisine",
-  "subtitle": "Phuket Local Cuisine Receipes",
-  "thumbnailUrl": "/static/indexThumbnail.jpg",
-  "meta": {
-    "description": "Phuket local food receipes",
-    "tags": [
-      "food",
-      "phuket cuisine",
-      "recipes",
-      "phuket"
-    ]
+  "header": {
+    "title": "Phuket Cuisine",
+    "subtitle": "Phuket Local Cuisine Receipes",
+    "thumbnailUrl": "/static/indexThumbnail.jpg",
+    "meta": {
+      "description": "Phuket local food receipes",
+      "tags": [
+        "food",
+        "phuket cuisine",
+        "recipes",
+        "phuket"
+      ]
+    }
   }
 }
