@@ -1,55 +1,62 @@
 import { withRouter } from 'next/router'
 import HeaderLayout from '../components/HeaderLayout'
 import Markdown from 'react-markdown'
-import fileMapping from '../posts/map.json'
 
-const FoodContent = (md) => {
+const addPrefixImageUri = (id, uri) => {
+  const r = new RegExp('^(?:[a-z]+:)?//', 'i');
+  if (r.test(uri) === true) {
+    return uri;
+  } else {
+    const img = require(`../posts/${id}/${uri}`)
+    return img;
+  }
+}
+
+const FoodContent = (md, id) => {
   return () => (
     <div>
-      <Markdown className="content is-medium" escapeHtml={false} source={md} />
+      <Markdown className="content is-medium" escapeHtml={false} source={md} transformImageUri={addPrefixImageUri.bind(null, id)} />
     </div>
   )
 };
 
 const Food = (props) => {
-  if (props.router.query.id === undefined) {
+  if (props.router.query.id === undefined || props.content === undefined) {
     const header = {
-      title: "Phuket Cuisine",
-      subtitle: "Unknown Food",
+      title: "Error",
+      subtitle: "Missing or invalid food ID",
       meta: {
         description: "Please specify food ID",
         tags: []
       }
     };
     const errorMsg = () => (
-      <p>Error: Food ID is required.</p>
+      <hr />
     );
     return HeaderLayout(errorMsg, header)();
   }
   else {
-    return HeaderLayout(FoodContent(props.content.md), props.content.header)();
+    return HeaderLayout(FoodContent(props.content.md, props.router.query.id), props.content.header)();
   }
 };
 
-const mapping = fileMapping;
-
 Food.getInitialProps = async function (context) {
   const { id } = context.query
-  /* In markdown, image link should be /posts/moo-hong/thumbnail.jpg */
-  const meta = await require(`../posts/${mapping[id]}/meta.json`);
-  const markdown = await require(`../posts/${mapping[id]}/index.md`);
+  try {
+    const meta = await require(`../posts/${id}/meta.json`);
+    const markdown = await require(`../posts/${id}/index.md`);
 
-  const content = meta;
-  content['md'] = markdown.default;
-  content.header.path = `/static/posts/${mapping[id]}`
-  /* Use as running once */
-  if (content[0] === undefined) {
-    content.header.thumbnailUrl = content.header.path + "/" + content.header.thumbnailUrl
-    content[0] = true;
+    const content = meta;
+    content['md'] = markdown.default;
+    if (content[0] === undefined) {
+      content.header.thumbnailUrl = await require(`../posts/${id}/${content.header.thumbnailUrl}`)
+      content[0] = true;
+    }
+    return { content }
+  } catch (e) {
+    console.log(e);
+    return {};
   }
-  // console.log(JSON.stringify(meta['md']));
-
-  return { content }
 }
 
 export default withRouter(Food)
