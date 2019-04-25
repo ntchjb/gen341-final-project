@@ -35,16 +35,15 @@ To create a post of food recipes, please follow this instructions
 ```json
 {
   "header": {
-    "title": "Ban Kanan",
+    "title": "Phuket Cuisine",
     "subtitle": "About & Contact",
     "publishedDate": "2019-04-23T07:05:12Z",
     "modifiedDate": "2019-04-23T13:17:10Z",
     "author": "Somkid Thongdee",
     "meta": {
-      "description": "The history of Ban Kanan, local wisdom, and Phuket local food",
+      "description": "The history of phuket, local wisdom, and Phuket local food",
       "tags": [
         "food",
-        "Ban Kanan",
         "recipes",
         "Phuket",
         "History"

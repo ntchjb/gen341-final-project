@@ -99,7 +99,7 @@ class Index extends React.Component {
         <div>
           <div className="hero">
             <div className="hero-body">
-              <h1 className="title is-1 has-text-centered">Food Receipes</h1>
+              <h1 className="title is-1 has-text-centered">Cuisine Receipes</h1>
             </div>
           </div>
           <hr />
@@ -109,6 +109,7 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
+        <hr />
         <div className="columns is-centered">
           <div className="column has-text-centered">
             {

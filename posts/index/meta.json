@@ -1,12 +1,12 @@
 {
-  "title": "Ban Kanan",
-  "subtitle": "Local Cuisine Receipes",
+  "title": "Phuket Cuisine",
+  "subtitle": "Phuket Local Cuisine Receipes",
   "thumbnailUrl": "/static/indexThumbnail.jpg",
   "meta": {
-    "description": "Ban Kanan: local wisdom, and Phuket local food",
+    "description": "Phuket local food receipes",
     "tags": [
       "food",
-      "Ban Kanan",
+      "phuket cuisine",
       "recipes",
       "phuket"
     ]

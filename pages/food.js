@@ -14,7 +14,7 @@ const FoodContent = (md) => {
 const Food = (props) => {
   if (props.router.query.id === undefined) {
     const header = {
-      title: "Ban Kanan",
+      title: "Phuket Cuisine",
       subtitle: "Unknown Food",
       meta: {
         description: "Please specify food ID",
