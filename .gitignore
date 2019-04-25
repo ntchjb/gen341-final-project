@@ -1,8 +1,8 @@
 node_modules
 .next
 .env
-posts/*
-!posts/index
-!posts/about
-/static/posts/*
+# posts/*
+# !posts/index
+# !posts/about
+# /static/posts/*
 /out
