@@ -32,7 +32,8 @@ const FoodCard = ({ food, size }) => (
       <Link href={`/food?id=${food.id}`}>
         <a className="ct columns is-vcentered">
           <div className="column">
-            <p className="title is-3 has-text-centered">{food.title +" | " + food.subtitle}</p>
+            <p className="title is-3 has-text-centered">{food.title}</p>
+            <p className="subtitle is-5 has-text-centered">{food.subtitle}</p>
             <hr/>
             <p className="subtitle is-5 has-text-centered">{"by " + food.author + " | " + moment(food.publishedDate).fromNow()}</p>
           </div>

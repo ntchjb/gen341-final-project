@@ -64,7 +64,7 @@ class Index extends React.Component {
     for (let i = 0; i < foodCardList.length; i++) {
       countCardPerTile++;
       if (countCardPerTile > numCardPerTile) {
-        countCardPerTile = 0;
+        countCardPerTile = 1;
         if (numCardPerTile === 2) {
           numCardPerTile = 3;
         } else {
