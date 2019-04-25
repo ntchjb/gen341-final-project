@@ -69,8 +69,8 @@ Here is the folder structure that we have created. We have created food name cal
 
 The content inside `meta.json` is the header information that will be shown as the summary of the post. Title, subtitle, and any other keys can be edited as you wish.
 
-6. The content inside `index.md`, markdown language will be used as a post content. However, HTML tag can be added for the display customization.
-7. After write all content for the post, run `npm run dev` in the terminal to check the content. Go to any browser and go to `localhost:3000`
+5. The content inside `index.md`, markdown language will be used as a post content. However, HTML tag can be added for the display customization.
+6. After write all content for the post, run `npm run dev` in the terminal to check the content. Go to any browser and go to `localhost:3000`
 
 ## Deployment
 
