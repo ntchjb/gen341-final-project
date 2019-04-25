@@ -4,5 +4,5 @@ node_modules
 # posts/*
 # !posts/index
 # !posts/about
-# /static/posts/*
+/static/images/*
 /out
