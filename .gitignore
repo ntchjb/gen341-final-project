@@ -6,3 +6,4 @@ node_modules
 # !posts/about
 /static/images/*
 /out
+.DS_Store

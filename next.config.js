@@ -16,7 +16,9 @@ const getDirectories = source => {
   return result;
 }
 
-module.exports = {
+const withSass = require('@zeit/next-sass')
+
+const config = {
   webpack: (config, options) => {
     const { isServer } = options;
     config.module.rules.push(
@@ -60,3 +62,5 @@ module.exports = {
     return cache;
   }
 }
+
+module.exports = withSass(config);

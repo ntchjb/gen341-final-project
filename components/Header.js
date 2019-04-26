@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-
+import '../style/mystyles.scss';
 // Convert to string with comma
 const array2str = (arr) => {
   let str = ""
@@ -40,15 +40,14 @@ const Header = ({ title, subtitle, meta }) => (
       <meta name="description" content={meta.description} />
       <meta name="author" content="@ntchjb" />
       <meta httpEquiv="Content-Type" content="text/html; charset = UTF-8" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
       <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </Head>
     <header className="container">
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link href="/">
-            <a className="navbar-item superbrand">
-              <img src="/static/logo.png" />
+            <a aria-label="Home Page" className="navbar-item superbrand">
+              <img alt="logo" src="/static/logo.png" />
             </a>
           </Link>
           <style jsx>{`
@@ -65,10 +64,10 @@ const Header = ({ title, subtitle, meta }) => (
         <div className="navbar-menu" id="nav-menu">
           <div className="navbar-start">
             <Link href="/">
-              <a className="navbar-item">Home</a>
+              <a aria-label="Go to Home page" className="navbar-item">Home</a>
             </Link>
             <Link href="/about">
-              <a className="navbar-item">About</a>
+              <a aria-label="History of Phuket local food" className="navbar-item">About</a>
             </Link>
           </div>
         </div>

@@ -29,10 +29,13 @@ const FoodContent = (md, id) => {
         img {
           margin: 0 auto;
           display: block;
+          object-fit: contain;
+          max-height: 600px;
         }
-        p em {
+        img + em {
           text-align: center;
           display: block;
+          margin-top: 5px;
         }
       `}</style>
     </div>

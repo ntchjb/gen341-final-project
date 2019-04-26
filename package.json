@@ -7,7 +7,8 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "export": "next export"
+    "export": "next export",
+    "now-build": "next build && next export -o dist"
   },
   "repository": {
     "type": "git",
@@ -21,17 +22,19 @@
   },
   "homepage": "https://github.com/ntchjb/gen341-final-project#readme",
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "express": "^4.16.4",
     "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
     "next": "^8.1.0",
-    "raw-loader": "^2.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8"
   },
   "devDependencies": {
+    "bulma": "^0.7.4",
     "file-loader": "^3.0.1",
-    "url-loader": "^1.1.2"
+    "node-sass": "^4.11.0",
+    "raw-loader": "^2.0.0"
   }
 }
