@@ -12,10 +12,29 @@ const addPrefixImageUri = (id, uri) => {
   }
 }
 
+const addPrefixLinkUri = (uri) => {
+  const r = new RegExp('^(?:[a-z]+:)?//', 'i');
+  if (r.test(uri) === true) {
+    return uri;
+  } else {
+    return `/f/${uri}`;
+  }
+}
+
 const FoodContent = (md, id) => {
   return () => (
     <div>
-      <Markdown className="content is-medium" escapeHtml={false} source={md} transformImageUri={addPrefixImageUri.bind(null, id)} />
+      <Markdown className="content is-medium" escapeHtml={false} source={md} transformImageUri={addPrefixImageUri.bind(null, id)} transformLinkUri={addPrefixLinkUri} />
+      <style jsx global>{`
+        img {
+          margin: 0 auto;
+          display: block;
+        }
+        p em {
+          text-align: center;
+          display: block;
+        }
+      `}</style>
     </div>
   )
 };
