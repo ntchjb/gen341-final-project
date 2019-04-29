@@ -27,7 +27,7 @@ const truncateStr = (str, maxNumChars) => {
 
 const FoodCard = ({ food, size }) => (
   <div className={size ? "tile is-parent " + size : "tile is-parent"}>
-    <div className="tile is-child box">
+    <div className="tile is-child box" onTouchStart={() => {return true;}}>
       <div className="bg"><div className="overlay"></div></div>
       <Link as={`/f/${food.id}`} href={`/food?id=${food.id}`}>
         <a className="ct columns is-vcentered">
